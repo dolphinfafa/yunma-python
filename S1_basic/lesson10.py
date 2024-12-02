@@ -22,10 +22,27 @@ print(f'排序后的列表为：{li}')
 
 # Homework 2
 # 定义一个函数，输入字符串，如果是顺序的返回UP，如果是倒序的返回DOWN，乱序的返回False
-# def check_order(s):
-#     if s == ''.join(sorted(s)):
-#         return 'UP'
-#     elif s == ''.join(sorted(s, reverse=True)):
-#         return 'DOWN'
-#     else:
-#         return False
+def check_order(s):
+    if s == ''.join(sorted(s)):
+        return 'UP'
+    elif s == ''.join(sorted(s, reverse=True)):
+        return 'DOWN'
+    else:
+        return False
+
+def is_consecutive_chars(s):
+    for i in range(len(s)-1):
+        if abs(ord(s[i]) - ord(s[i+1])) != 1:
+            return False
+    return True
+
+str = input('请输入一个字符串：')
+while str.isalpha() == False:
+    str = input('请输入一个字符串：')
+else:
+    if is_consecutive_chars(str) and check_order(str) == 'UP':
+        print('UP')
+    elif is_consecutive_chars(str) and check_order(str) == 'DOWN':
+        print('DOWN')
+    else:
+        print(False)
